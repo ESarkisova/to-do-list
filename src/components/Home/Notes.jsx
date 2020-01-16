@@ -16,15 +16,20 @@ const Notes = ({notes}) => {
             alert.showAlert(`Произошла ошибка ${err}`, 'danger');
         });
     };
+    let notesElements;
+    if (notes && notes.length) {
+        notesElements = notes.map(note =>
+            (<CSSTransition classNames="note-trs" timeout={600} key={note.id}>
+                <Note note={note} deleteNote={deleteNote}/>
+            </CSSTransition>)
+        )
+    } else {
+        return (<div className="text-center text-muted">Список дел пуст</div>);
+    }
+
     return (
-        <TransitionGroup component = "ul" className={`list-group ${db.isLocalLoading ? 'loading' : ''}`}>
-            {(notes && notes.length) ?
-                notes.map(note => (<CSSTransition classNames = "note-trs"
-                                                  timeout = {600} key={note.id}>
-                    <Note note={note} deleteNote={deleteNote} key={note.id}/>
-                </CSSTransition>))
-                : <div className="align-self-center text-muted">Список дел пуст</div>
-            }
+        <TransitionGroup  component="ul" className={`list-group ${db.isLocalLoading ? 'loading' : ''}`}>
+            {notesElements}
         </TransitionGroup>
     )
 };

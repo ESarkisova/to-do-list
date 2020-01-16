@@ -1,13 +1,17 @@
 .note-trs-enter
   opacity: 0
+  transform: translateX(-200px)
 
 .note-trs-enter-active
   opacity: 1
-  transition: opacity 600ms ease-in
+  transform: translateX(0px)
+  transition: opacity 300ms ease-in, transform 600ms ease-in-out
 
 .note-trs-exit
   opacity: 1
+  transform: translateX(30px)
 
 .note-trs-exit-active
   opacity: 0
-  transition: opacity 600ms ease-in
+  transform: translateX(-200px)
+  transition: opacity 300ms ease-in, transform 600ms ease-in-out

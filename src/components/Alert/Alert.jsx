@@ -6,16 +6,16 @@ import './Alert.sass'
 const Alert = () => {
     const {alert, hideAlert} = useContext(AlertContext);
 
-    if (!alert.visible) {
-        return null;
-    }
     return (
-        <CSSTransition in = {alert.visible}
-                        classNames="alert-trs"
-                        timeout={500}
-                        mountOnEnter
-                        unmountOnExit>
-            <div className={`alert alert-${alert.type || 'warning'} mb-0`}>
+        <CSSTransition in={alert.visible}
+                        classNames="alert"
+                        timeout={{
+                            enter: 500,
+                            exit: 350
+                        }}
+                       mountOnEnter
+                       unmountOnExit>
+            <div className={`alert alert-${alert.type || 'warning'} mb-0 alert-dismissible`}>
                 <strong>Внимание! </strong> {alert.text}
                 <button type="button" className="close" onClick={hideAlert}>
                     <span aria-hidden="true">&times;</span>

@@ -50,7 +50,7 @@ export const DbState = ({children}) => {
     };
     const removeNote = async noteId => {
         showLocalLoader();
-        await axios.delete(`${url}/notes.json`, noteId).then(() => {
+        await axios.delete(`${url}/notes/${noteId}.json`).then(() => {
             dispatch({type: REMOVE_NOTE, noteId});
         });
 
